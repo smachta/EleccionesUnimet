@@ -58,13 +58,8 @@ public class InterfazElecciones extends javax.swing.JFrame {
         
         vecEstudiantes[posicionEst] = est;
         vecEstudiantes[posicionEst].imprimir();
+        System.out.println(posicionEst);
         
-        try{
-            manejador.CrearArchivo(vecEstudiantes);
-        }catch (Exception ex) {
-            System.out.println("Error creando: "+ex.getMessage());
-            vecEstudiantes = new Estudiantes[6000];
-        }
         
     }
     
@@ -304,6 +299,12 @@ public class InterfazElecciones extends javax.swing.JFrame {
         
         Estudiantes est= new Estudiantes(cedula,carrera1,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido); 
         insertarEstudiante(est);
+        try{
+            manejador.CrearArchivo(vecEstudiantes);
+        }catch (Exception ex) {
+            System.out.println("Error creando: "+ex.getMessage());
+            vecEstudiantes = new Estudiantes[6000];
+        }
     }//GEN-LAST:event_EnviarActionPerformed
 
     /**

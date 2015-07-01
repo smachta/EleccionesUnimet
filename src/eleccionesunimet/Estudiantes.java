@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package eleccionesunimet;
-
+import java.util.Arrays; 
 /**
  *
  * @author smachta1
@@ -18,6 +18,7 @@ public class Estudiantes {
     private String sNombre; //  segundo nombre del estudiante
     private String pApellido; // primer apellido del estudiante
     private String sApellido; // segundo apellido del estudiante  
+    
 
     
     

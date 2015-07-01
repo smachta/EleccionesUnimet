@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 public class Estudiantes {
 
-    private  int cedula; //numero de cédula. 
+    private String cedula; //numero de cédula. 
     private String carrera1; // primera carrera que estudia
     private String carrera2; // segunda carrera que estudia
     private String pNombre; //  primer nombre del estudiante
@@ -22,15 +22,14 @@ public class Estudiantes {
 
     
     
-    public Estudiantes(){
+    public Estudiantes(  ){
     
     }
     
-    public Estudiantes(int cedula,String carrera1,String carrera2,String pNombre,String sNombre,String pApellido, String sApellido){
+    public Estudiantes(String cedula,String carrera1,String pNombre,String sNombre,String pApellido, String sApellido){
     
     this.cedula=cedula; 
         this.carrera1=carrera1; 
-            this.carrera2=carrera2; 
                 this.pApellido=pApellido; 
                     this.sApellido=sApellido; 
                         this.pNombre=pNombre; 
@@ -39,11 +38,11 @@ public class Estudiantes {
     }
     
     //============="GETTERS AND SETTERS"=========================================
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 

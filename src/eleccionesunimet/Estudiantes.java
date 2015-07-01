@@ -4,32 +4,38 @@
  * and open the template in the editor.
  */
 package eleccionesunimet;
-
+import java.util.Arrays; 
 /**
  *
  * @author smachta1
  */
 public class Estudiantes {
 
-    private  int cedula; //numero de cédula. 
+    private String cedula; //numero de cédula. 
     private String carrera1; // primera carrera que estudia
     private String carrera2; // segunda carrera que estudia
     private String pNombre; //  primer nombre del estudiante
     private String sNombre; //  segundo nombre del estudiante
     private String pApellido; // primer apellido del estudiante
     private String sApellido; // segundo apellido del estudiante  
+    
 
     
     
-    public Estudiantes(){
-    
+    public Estudiantes(  ){
+        cedula="-1";
+        carrera1="-1";
+        carrera2="-1";
+        pNombre="-1";
+        sNombre="-1";
+        pApellido="-1";
+        sApellido="-1";
     }
     
-    public Estudiantes(int cedula,String carrera1,String carrera2,String pNombre,String sNombre,String pApellido, String sApellido){
+    public Estudiantes(String cedula,String carrera1,String pNombre,String sNombre,String pApellido, String sApellido){
     
     this.cedula=cedula; 
         this.carrera1=carrera1; 
-            this.carrera2=carrera2; 
                 this.pApellido=pApellido; 
                     this.sApellido=sApellido; 
                         this.pNombre=pNombre; 
@@ -38,11 +44,11 @@ public class Estudiantes {
     }
     
     //============="GETTERS AND SETTERS"=========================================
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
@@ -95,7 +101,12 @@ public class Estudiantes {
     }
    // ==========================================================================
     
-    
+    public void imprimir(){
+        
+        System.out.print(pNombre+" "+sNombre+" ");
+        System.out.println(pApellido+" "+sApellido);
+        System.out.println("CI: "+cedula+"\n"+carrera1);
+    }
     
     
     

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JRadioButtonMenuItem" name="jRadioButtonMenuItem1">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="jRadioButtonMenuItem1"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -56,15 +64,39 @@
                           <Component id="pNombreTexto1" alignment="0" pref="100" max="32767" attributes="0"/>
                           <Component id="pApellidoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="pApellidoTexto" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="CedulaText" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="sApellidoLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="sNombreLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="sNombreTexto" max="32767" attributes="0"/>
-                          <Component id="sApellidoTexto" alignment="0" pref="100" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="sApellidoLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="sNombreLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="sNombreTexto" max="32767" attributes="0"/>
+                                      <Component id="sApellidoTexto" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
+                                      <Component id="Enviar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jSeparator3" min="-2" pref="0" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="134" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -83,21 +115,45 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="sApellidoLabel" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="sApellidoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Enviar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="pApellidoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pApellidoTexto" min="-2" max="-2" attributes="0"/>
-                          <Component id="sApellidoTexto" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="pApellidoTexto" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sApellidoTexto" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="CedulaText" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
+                              <Component id="jSeparator3" min="-2" pref="59" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="160" max="32767" attributes="0"/>
+                      <EmptySpace pref="94" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="pNombreTexto1">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pNombreTexto1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="pNombreLabel1">
               <Properties>
@@ -122,8 +178,61 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="pApellidoTexto">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Lucida Grande" size="13" style="1"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="sApellidoTexto">
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBox1">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="ff" red="33" type="rgb"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="12">
+                    <StringItem index="0" value="Ingenieria de Sistemas"/>
+                    <StringItem index="1" value="Ingenieria de Produccion"/>
+                    <StringItem index="2" value="Ingenieria Electrica"/>
+                    <StringItem index="3" value="Ingenieria Mec&#xe1;nica"/>
+                    <StringItem index="4" value="Ingenieria Quimica"/>
+                    <StringItem index="5" value="Psicolog&#xed;a"/>
+                    <StringItem index="6" value="Econom&#xed;a"/>
+                    <StringItem index="7" value="Administraci&#xf3;n"/>
+                    <StringItem index="8" value="Idiomas"/>
+                    <StringItem index="9" value="Estudios Liberales"/>
+                    <StringItem index="10" value="Derecho"/>
+                    <StringItem index="11" value=""/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Carrera "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cedula"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="CedulaText">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CedulaTextActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Enviar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Enviar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EnviarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator3">
             </Component>
           </SubComponents>
         </Container>
@@ -139,15 +248,90 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="395" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                      <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="108" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="BuscarCedula" pref="96" max="32767" attributes="0"/>
+                          <Component id="BuscarNombre" alignment="1" max="32767" attributes="0"/>
+                          <Component id="BuscarApellido" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="272" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="BuscarCedula" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BuscarNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BuscarApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="95" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JComboBox" name="jComboBox2">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Primer Nombre y Apellido"/>
+                    <StringItem index="1" value="Primer Nombre"/>
+                    <StringItem index="2" value="Primer Apellido"/>
+                    <StringItem index="3" value="Cedula"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="BuscarCedula">
+            </Component>
+            <Component class="javax.swing.JTextField" name="BuscarNombre">
+            </Component>
+            <Component class="javax.swing.JTextField" name="BuscarApellido">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cedula"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Apellido"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>

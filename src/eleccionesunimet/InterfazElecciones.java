@@ -10,9 +10,9 @@ public class InterfazElecciones extends javax.swing.JFrame {
    
     public ArchivoObjetos manejador;
     public Estudiantes[] vecEstudiantes = new Estudiantes[6000];
-    public int[][] indexCedula = new int[6000][2];
-    public int[][] indexNombre = new int[6000][2];
-    public int[][] indexApellido = new int[6000][2];
+    public int[]indexCedula = new int[6000];
+    public int[]indexNombre = new int[6000];
+    public int[]indexApellido = new int[6000];
     
    
     public void inicializar(){
@@ -35,11 +35,9 @@ public class InterfazElecciones extends javax.swing.JFrame {
             }
         }
     }
-    public void inicializarIndex(int[][] mat){
-        for (int i=0; i<6000; i++){
-            for (int j=0; j<2; j++)
-                mat[i][j]=-1;
-        }
+    public void inicializarIndex(int[] mat){
+        for (int i=0; i<6000; i++)
+                mat[i]=-1;
     }
     
     public InterfazElecciones() {
@@ -57,11 +55,31 @@ public class InterfazElecciones extends javax.swing.JFrame {
         }
         
         vecEstudiantes[posicionEst] = est;
-        vecEstudiantes[posicionEst].imprimir();
-        System.out.println(posicionEst);
+        //vecEstudiantes[posicionEst].imprimir();
         
-        
+        indexCedula[hashCedula(est.getCedula())]= posicionEst;
+        indexNombre[hashNombre(est.getpNombre())]= posicionEst;
+        indexApellido[hashApellido(est.getpApellido())]= posicionEst;
     }
+    
+    //========================================================
+    
+    public int hashCedula (String cedula){
+        int hash;
+        return hash;
+    }
+    
+    public int hashNombre (String cedula){
+        int hash;
+        return hash;
+    }
+    
+    public int hashApellido (String cedula){
+        int hash;
+        return hash;
+    }
+    
+    //========================================================
     
     @SuppressWarnings("unchecked")
     
@@ -299,17 +317,17 @@ public class InterfazElecciones extends javax.swing.JFrame {
         
         Estudiantes est= new Estudiantes(cedula,carrera1,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido); 
         insertarEstudiante(est);
-        try{
-            manejador.CrearArchivo(vecEstudiantes);
-        }catch (Exception ex) {
-            System.out.println("Error creando: "+ex.getMessage());
-            vecEstudiantes = new Estudiantes[6000];
-        }
+        
+//        try{
+//            manejador.CrearArchivo(vecEstudiantes);
+//        }catch (Exception ex) {
+//            System.out.println("Error creando: "+ex.getMessage());
+//            vecEstudiantes = new Estudiantes[6000];
+//        }
+        
     }//GEN-LAST:event_EnviarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

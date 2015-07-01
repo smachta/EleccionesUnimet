@@ -5,10 +5,13 @@
  */
 package eleccionesunimet;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class InterfazElecciones extends javax.swing.JFrame {
    
-    public ArchivoObjetos manejador;
+    public ArchivoObjetos manejador= new ArchivoObjetos();
     public Estudiantes[] vecEstudiantes = new Estudiantes[6000];
     public int[]indexCedula = new int[6000];
     public int[]indexNombre = new int[6000];
@@ -28,7 +31,8 @@ public class InterfazElecciones extends javax.swing.JFrame {
                 vecEstudiantes[i] = nuevo;
         else{
             try{
-                vecEstudiantes = (Estudiantes[])manejador.ObtenerArchivo();
+                vecEstudiantes = (Estudiantes[])manejador.leerEstudiantes();
+                indexCedula=(int[])manejador.leerCedula(); 
             }catch(Exception ex){
                 System.out.println("Error Leyendo"+ex.getMessage());
                 vecEstudiantes = new Estudiantes[6000];
@@ -122,6 +126,10 @@ public class InterfazElecciones extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         BotonBuscar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -137,6 +145,12 @@ public class InterfazElecciones extends javax.swing.JFrame {
         pNombreLabel1.setText("Primer Nombre");
 
         sNombreLabel.setText("Segundo Nombre");
+
+        sNombreTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sNombreTextoActionPerformed(evt);
+            }
+        });
 
         pApellidoLabel.setText("Primer Apellido");
 
@@ -193,7 +207,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 42, Short.MAX_VALUE)
+                                .addGap(0, 50, Short.MAX_VALUE)
                                 .addComponent(Enviar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,7 +248,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         tabBuscar.addTab("Agregar", jPanel1);
@@ -282,7 +296,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addComponent(ComboBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,10 +335,55 @@ public class InterfazElecciones extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BuscarApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         tabBuscar.addTab("Buscar", jPanel2);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jButton1)
+                .addGap(0, 51, Short.MAX_VALUE))
+        );
+
+        tabBuscar.addTab("Resultado", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -420,6 +479,25 @@ public class InterfazElecciones extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_BotonBuscarActionPerformed
+
+    private void sNombreTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sNombreTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sNombreTextoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+       
+        try {
+            manejador.Escribir(vecEstudiantes);
+            manejador.Escribir2(indexCedula);
+            System.exit(1);
+        } catch (Exception ex) {
+            Logger.getLogger(InterfazElecciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     
     
@@ -463,6 +541,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
     private javax.swing.JTextField CedulaText;
     private javax.swing.JComboBox ComboBoxBuscar;
     private javax.swing.JButton Enviar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -471,8 +550,11 @@ public class InterfazElecciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel pApellidoLabel;
     private javax.swing.JTextField pApellidoTexto;
     private javax.swing.JLabel pNombreLabel1;

@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package eleccionesunimet;
-import java.util.Arrays; 
+import java.io.*;
+
 /**
  *
  * @author smachta1
  */
-public class Estudiantes {
+public class Estudiantes implements Serializable{
 
     private String cedula; //numero de cédula. 
     private String carrera1; // primera carrera que estudia

@@ -1,36 +1,51 @@
 package eleccionesunimet;
+import java.io.*; 
 
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+public class ArchivoObjetos implements Serializable{
 
-public class ArchivoObjetos 
-{
+ public void Escribir(Estudiantes[] est) throws Exception{
+ FileOutputStream fos=new FileOutputStream("archivo.DAT");
+ ObjectOutputStream output=new ObjectOutputStream(fos);
+ output.writeObject(est);
+ //output.writeObject(nom);
+ //output.writeObject(ap);
+ //output.writeObject(nomAp);
+ output.close();
+ }   
 
-    public void CrearArchivo(Estudiantes[] lista) throws Exception
-    {
-        FileOutputStream file = null;
-        file = new FileOutputStream ("ListaEstudiantes.DAT");
-            ObjectOutputStream output = new ObjectOutputStream (file);
-            output.writeObject(lista);
-            output.close(); 
-    }
-    
-    public Object ObtenerArchivo() throws Exception
-    {
-        FileInputStream file = null;
-        Estudiantes[] lista=null;
-        file = new FileInputStream ("ListaEstudiantes.DAT");
-        ObjectInputStream input = new ObjectInputStream (file);
-        lista = (Estudiantes[]) input.readObject();
-        input.close();
-        return lista;
-    }
-    
-    
+ public void Escribir2(int[] ced) throws Exception{
+ FileOutputStream fas=new FileOutputStream("archivo.DAT");
+ ObjectOutputStream output2=new ObjectOutputStream(fas);
+ output2.writeObject(ced);
+ //output.writeObject(nom);
+ //output.writeObject(ap);
+ //output.writeObject(nomAp);
+ output2.close();
+ }   
+ 
+ 
+ 
+public Estudiantes[] leerEstudiantes()throws Exception{
+FileInputStream fos = new FileInputStream("archivo.DAT");
+ObjectInputStream input = new ObjectInputStream(fos);
+Estudiantes est[]=(Estudiantes[])input.readObject(); 
+input.close();
+return est;
 }
+
+public int[] leerCedula()throws Exception{
+FileInputStream fas = new FileInputStream("archivo.DAT");
+ObjectInputStream input = new ObjectInputStream(fas);
+int ced[]=(int[])input.readObject(); 
+input.close();
+return ced;
+
+}   
+
+
+
+}  
+    
+    
+

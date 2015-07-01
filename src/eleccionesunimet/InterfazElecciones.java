@@ -58,8 +58,8 @@ public class InterfazElecciones extends javax.swing.JFrame {
         //vecEstudiantes[posicionEst].imprimir();
         
         indexCedula[hashCedula(est.getCedula())]= posicionEst;
-        indexNombre[hashNombre(est.getpNombre())]= posicionEst;
-        indexApellido[hashApellido(est.getpApellido())]= posicionEst;
+        //indexNombre[hashNombre(est.getpNombre())]= posicionEst;
+        //indexApellido[hashApellido(est.getpApellido())]= posicionEst;
     }
     
     //========================================================
@@ -70,11 +70,14 @@ public class InterfazElecciones extends javax.swing.JFrame {
              hash=hash%6000; 
              while(indexCedula[hash]!=-1){
              hash=hash+1; 
-             }     
+             } 
+        System.out.println("valos del hash"+hash);
         return hash;
     }
     
+    /*
     public int hashNombre (String cedula){
+        
         int hash;
         return hash;
     }
@@ -83,6 +86,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
         int hash;
         return hash;
     }
+    */
     
     //========================================================
     
@@ -110,13 +114,14 @@ public class InterfazElecciones extends javax.swing.JFrame {
         Enviar = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox2 = new javax.swing.JComboBox();
+        ComboBoxBuscar = new javax.swing.JComboBox();
         BuscarCedula = new javax.swing.JTextField();
         BuscarNombre = new javax.swing.JTextField();
         BuscarApellido = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        BotonBuscar = new javax.swing.JButton();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -234,7 +239,28 @@ public class InterfazElecciones extends javax.swing.JFrame {
 
         tabBuscar.addTab("Agregar", jPanel1);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Primer Nombre y Apellido", "Primer Nombre", "Primer Apellido", "Cedula" }));
+        ComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Primer Nombre y Apellido", "Primer Nombre", "Primer Apellido", "Cedula" }));
+        ComboBoxBuscar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ComboBoxBuscarItemStateChanged(evt);
+            }
+        });
+        ComboBoxBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxBuscarActionPerformed(evt);
+            }
+        });
+
+        BuscarCedula.setEnabled(false);
+        BuscarCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarCedulaActionPerformed(evt);
+            }
+        });
+
+        BuscarNombre.setEnabled(false);
+
+        BuscarApellido.setEnabled(false);
 
         jLabel3.setText("Cedula");
 
@@ -242,13 +268,20 @@ public class InterfazElecciones extends javax.swing.JFrame {
 
         jLabel5.setText("Apellido");
 
+        BotonBuscar.setText("Buscar");
+        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ComboBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(108, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
@@ -261,22 +294,29 @@ public class InterfazElecciones extends javax.swing.JFrame {
                     .addComponent(BuscarCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                     .addComponent(BuscarNombre)
                     .addComponent(BuscarApellido))
-                .addGap(161, 161, 161))
+                .addGap(35, 35, 35)
+                .addComponent(BotonBuscar)
+                .addGap(29, 29, 29))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(BuscarCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(ComboBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(BuscarCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BotonBuscar)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BuscarApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,6 +372,56 @@ public class InterfazElecciones extends javax.swing.JFrame {
         
     }//GEN-LAST:event_EnviarActionPerformed
 
+    private void BuscarCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarCedulaActionPerformed
+      
+      
+    }//GEN-LAST:event_BuscarCedulaActionPerformed
+
+    private void ComboBoxBuscarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboBoxBuscarItemStateChanged
+       if(ComboBoxBuscar.getSelectedItem().toString()=="Cedula"){
+        BuscarCedula.setEnabled(true);
+        BuscarNombre.setEnabled(false);
+        BuscarApellido.setEnabled(false);
+       }
+       else if(ComboBoxBuscar.getSelectedItem().toString()=="Primer Nombre"){
+        BuscarCedula.setEnabled(false);
+        BuscarNombre.setEnabled(true);
+        BuscarApellido.setEnabled(false);
+       }
+        else if(ComboBoxBuscar.getSelectedItem().toString()=="Primer Apellido"){
+        BuscarCedula.setEnabled(false);
+        BuscarNombre.setEnabled(false);
+        BuscarApellido.setEnabled(true);
+       }
+        else{
+        BuscarCedula.setEnabled(false);
+        BuscarNombre.setEnabled(true);
+        BuscarApellido.setEnabled(true);
+        
+        }
+    }//GEN-LAST:event_ComboBoxBuscarItemStateChanged
+
+    private void ComboBoxBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxBuscarActionPerformed
+
+    private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
+    
+        if(BuscarCedula.isEnabled()){
+         Estudiantes aux=new Estudiantes(); 
+            System.out.println(BuscarCedula.getText().toString());
+            int ci= Integer.parseInt(BuscarCedula.getText().toString());
+            ci=ci%6000;
+            aux=vecEstudiantes[indexCedula[ci]]; 
+            aux.imprimir();
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_BotonBuscarActionPerformed
+    
+    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -366,13 +456,14 @@ public class InterfazElecciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonBuscar;
     private javax.swing.JTextField BuscarApellido;
     private javax.swing.JTextField BuscarCedula;
     private javax.swing.JTextField BuscarNombre;
     private javax.swing.JTextField CedulaText;
+    private javax.swing.JComboBox ComboBoxBuscar;
     private javax.swing.JButton Enviar;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

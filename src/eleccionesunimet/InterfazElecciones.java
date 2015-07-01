@@ -7,15 +7,14 @@ package eleccionesunimet;
 
 
 public class InterfazElecciones extends javax.swing.JFrame {
-    
-    private Estudiantes est= new Estudiantes(); 
-    
+   
+    public ArchivoObjetos manejador;
     public Estudiantes[] vecEstudiantes = new Estudiantes[6000];
     public int[][] indexCedula = new int[6000][2];
     public int[][] indexNombre = new int[6000][2];
     public int[][] indexApellido = new int[6000][2];
     
-    
+   
     public void inicializar(){
         inicializarEst();
         inicializarIndex(indexCedula);
@@ -24,9 +23,17 @@ public class InterfazElecciones extends javax.swing.JFrame {
     }
     public void inicializarEst(){
         Estudiantes nuevo = new Estudiantes();
-        nuevo.setpNombre("-1");
-        for(int i=0; i<vecEstudiantes.length; i++)
-            vecEstudiantes[i] = nuevo;
+        if (vecEstudiantes[0]==null)
+            for(int i=0; i<vecEstudiantes.length; i++)
+                vecEstudiantes[i] = nuevo;
+        else{
+            try{
+                vecEstudiantes = (Estudiantes[])manejador.ObtenerArchivo();
+            }catch(Exception ex){
+                System.out.println("Error Leyendo"+ex.getMessage());
+                vecEstudiantes = new Estudiantes[6000];
+            }
+        }
     }
     public void inicializarIndex(int[][] mat){
         for (int i=0; i<6000; i++){
@@ -34,9 +41,33 @@ public class InterfazElecciones extends javax.swing.JFrame {
                 mat[i][j]=-1;
         }
     }
+    
     public InterfazElecciones() {
         initComponents();
+        inicializar();
+        manejador = new ArchivoObjetos();
     }
+    
+    public void insertarEstudiante(Estudiantes est){
+        
+        int posicionEst = 0;
+        
+        while(vecEstudiantes[posicionEst].getCedula()!= "-1"){
+            posicionEst++;
+        }
+        
+        vecEstudiantes[posicionEst] = est;
+        vecEstudiantes[posicionEst].imprimir();
+        
+        try{
+            manejador.CrearArchivo(vecEstudiantes);
+        }catch (Exception ex) {
+            System.out.println("Error creando: "+ex.getMessage());
+            vecEstudiantes = new Estudiantes[6000];
+        }
+        
+    }
+    
     @SuppressWarnings("unchecked")
     
     
@@ -263,17 +294,16 @@ public class InterfazElecciones extends javax.swing.JFrame {
     }//GEN-LAST:event_pNombreTexto1ActionPerformed
 
     private void EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarActionPerformed
-    
+        
         String cedula=CedulaText.getText(); 
         String PrimerNombre=pNombreTexto1.getText(); 
         String PrimerApellido=pApellidoTexto.getText(); 
         String SegundoNombre=sNombreTexto.getText(); 
         String SegundoApellido=sApellidoTexto.getText(); 
         String carrera1=jComboBox1.getSelectedItem().toString(); 
-        System.out.println(carrera1);
         
-        Estudiantes est1= new Estudiantes(cedula,carrera1,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido); 
-        
+        Estudiantes est= new Estudiantes(cedula,carrera1,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido); 
+        insertarEstudiante(est);
     }//GEN-LAST:event_EnviarActionPerformed
 
     /**
@@ -302,15 +332,12 @@ public class InterfazElecciones extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(InterfazElecciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        InterfazElecciones app = new InterfazElecciones();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfazElecciones().setVisible(true);
             }
         });
-        
-        app.inicializar();
         
     }
 

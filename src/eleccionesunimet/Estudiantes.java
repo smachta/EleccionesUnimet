@@ -23,7 +23,13 @@ public class Estudiantes {
     
     
     public Estudiantes(  ){
-    
+        cedula="-1";
+        carrera1="-1";
+        carrera2="-1";
+        pNombre="-1";
+        sNombre="-1";
+        pApellido="-1";
+        sApellido="-1";
     }
     
     public Estudiantes(String cedula,String carrera1,String pNombre,String sNombre,String pApellido, String sApellido){
@@ -95,7 +101,12 @@ public class Estudiantes {
     }
    // ==========================================================================
     
-    
+    public void imprimir(){
+        
+        System.out.print(pNombre+" "+sNombre+" ");
+        System.out.println(pApellido+" "+sApellido);
+        System.out.println("CI: "+cedula+"\n"+carrera1);
+    }
     
     
     

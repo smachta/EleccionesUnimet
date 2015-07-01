@@ -65,7 +65,12 @@ public class InterfazElecciones extends javax.swing.JFrame {
     //========================================================
     
     public int hashCedula (String cedula){
-        int hash;
+        
+        int hash=Integer.parseInt(cedula); 
+             hash=hash%6000; 
+             while(indexCedula[hash]!=-1){
+             hash=hash+1; 
+             }     
         return hash;
     }
     

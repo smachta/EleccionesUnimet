@@ -31,7 +31,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
         inicializarIndex(indexCedula);
         inicializarIndex(indexNombre);
         inicializarIndex(indexApellido);      
-    }
+    }                   //Se llenas todos los vectores para evitar el nullPointer con -1
     public void inicializarEst(){
         Estudiantes nuevo = new Estudiantes();
         if (vecEstudiantes[0]==null){
@@ -54,7 +54,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
         }
         
         System.out.println(cont);
-    }
+    }               
     public void inicializarIndex(int[] mat){
         for (int i=0; i<6000; i++)
                 mat[i]=-1;
@@ -105,10 +105,10 @@ public class InterfazElecciones extends javax.swing.JFrame {
         indexApellido[hashApellido(est.getpApellido())]= posicionEst;
         
        
-    }
+    }   //Metodo para insertar un estudiantes en la lista Original
     
     //========================================================
-    
+    //Funciones que realizan los hashing de la Cedula, Nombre y Apellido
     public int hashCedula (String cedula){
         
         int hash=Integer.parseInt(cedula); 
@@ -568,7 +568,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//Boton para eliminar la lista original y cerrar el programa
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(ve!=null){
             ve.setCont(0);
@@ -581,7 +581,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
-
+//Boton para sobreescribir la lista y guardar
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ve.setIndexApellido(indexApellido);
         ve.setIndexCedula(indexCedula);
@@ -596,7 +596,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
+//Metodos que realizan la busqueda obteniendo la informacion del TextField disponible
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
 
         Estudiantes aux= new Estudiantes();
@@ -656,15 +656,15 @@ public class InterfazElecciones extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_BotonBuscarActionPerformed
-
+//nada
     private void BuscarCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarCedulaActionPerformed
 
     }//GEN-LAST:event_BuscarCedulaActionPerformed
-
+//nada
     private void ComboBoxBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxBuscarActionPerformed
-
+//Metodo para bloquear o poner disponible los TextFields dependiendo del item seleccionado de busqueda
     private void ComboBoxBuscarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboBoxBuscarItemStateChanged
         if(ComboBoxBuscar.getSelectedItem().toString()=="Cedula"){
             BuscarCedula.setEnabled(true);
@@ -688,7 +688,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_ComboBoxBuscarItemStateChanged
-
+//Obtencion de datos para la creacion de un nuevo elector
     private void EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarActionPerformed
 
         String cedula=CedulaText.getText();
@@ -702,26 +702,26 @@ public class InterfazElecciones extends javax.swing.JFrame {
         insertarEstudiante(est);
 
     }//GEN-LAST:event_EnviarActionPerformed
-
+//nada
     private void CedulaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CedulaTextActionPerformed
-
+//nada
     private void sNombreTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sNombreTextoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sNombreTextoActionPerformed
-
+//nada
     private void pNombreTexto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pNombreTexto1ActionPerformed
 
     }//GEN-LAST:event_pNombreTexto1ActionPerformed
-
+//Metodo que limpia las casillas y muestra la persona encontrada
     private void BotonBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonBuscarMouseClicked
     tabBuscar.setSelectedIndex(2);
     BuscarCedula.setText("");
     BuscarNombre.setText("");
     BuscarApellido.setText("");
     }//GEN-LAST:event_BotonBuscarMouseClicked
-
+//Metodo que vlimpia las casilla de elector nuevo
     private void EnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnviarMouseClicked
     pNombreTexto1.setText("");
     sNombreTexto.setText("");
@@ -729,15 +729,15 @@ public class InterfazElecciones extends javax.swing.JFrame {
     sApellidoTexto.setText("");
     CedulaText.setText("");
     }//GEN-LAST:event_EnviarMouseClicked
-
+//nada
     private void tabBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabBuscarMouseClicked
     modelo.setNumRows(0);
     }//GEN-LAST:event_tabBuscarMouseClicked
-
+//nada
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonEliminarActionPerformed
-
+//Metodo que elimina al elector
     private void BotonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonEliminarMouseClicked
         
         String nom = modelo.getValueAt(0, 0).toString();
@@ -760,7 +760,6 @@ public class InterfazElecciones extends javax.swing.JFrame {
         
         modelo.removeRow(0);
     }//GEN-LAST:event_BotonEliminarMouseClicked
-    
     
     
     public static void main(String args[]) {

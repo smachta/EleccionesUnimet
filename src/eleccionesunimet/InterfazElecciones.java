@@ -79,10 +79,35 @@ public class InterfazElecciones extends javax.swing.JFrame {
         return hash;
     }
     
-    /*
+    public int sfold(String s) {
+        int M= 6000;
+        int intLength = s.length() / 4;
+        int sum = 0;
+        
+        for (int j = 0; j < intLength; j++) {
+          char c[] = s.substring(j * 4, (j * 4) + 4).toCharArray();
+          long mult = 1;
+          for (int k = 0; k < c.length; k++) {
+            sum += c[k] * mult;
+            mult *= 256;
+          }
+    }
+
+    char c[] = s.substring(intLength * 4).toCharArray();
+    int mult = 1;
+    for (int k = 0; k < c.length; k++) {
+      sum += c[k] * mult;
+      mult *= 256;
+    }
+
+     return(Math.abs(sum) % M);
+    }
+    
     public int hashNombre (String cedula){
         
         int hash;
+         
+        
         return hash;
     }
     
@@ -90,7 +115,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
         int hash;
         return hash;
     }
-    */
+    
     
     //========================================================
     

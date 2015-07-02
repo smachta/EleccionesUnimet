@@ -13,31 +13,44 @@ public class InterfazElecciones extends javax.swing.JFrame {
    
     public ArchivoObjetos manejador= new ArchivoObjetos();
     public Estudiantes[] vecEstudiantes = new Estudiantes[6000];
+    public Vectores ve; 
     public int[]indexCedula = new int[6000];
     public int[]indexNombre = new int[6000];
     public int[]indexApellido = new int[6000];
+    int cont=0;
+        int posicionEst = 0;
     
    
     public void inicializar(){
+  
         inicializarEst();
         inicializarIndex(indexCedula);
         inicializarIndex(indexNombre);
         inicializarIndex(indexApellido);
+       
     }
     public void inicializarEst(){
         Estudiantes nuevo = new Estudiantes();
-        if (vecEstudiantes[0]==null)
+        if (vecEstudiantes[0]==null){
             for(int i=0; i<vecEstudiantes.length; i++)
                 vecEstudiantes[i] = nuevo;
+        cont++;
+        }
         else{
             try{
-                vecEstudiantes = (Estudiantes[])manejador.leerEstudiantes();
-                indexCedula=(int[])manejador.leerCedula(); 
+                ve= new Vectores(); 
+                Vectores ve=(Vectores)manejador.leer();
+                vecEstudiantes=ve.getVecEstudiantes(); 
+                cont++; 
+                ve.setCont(cont);
+                
             }catch(Exception ex){
                 System.out.println("Error Leyendo"+ex.getMessage());
                 vecEstudiantes = new Estudiantes[6000];
             }
         }
+        
+        System.out.println(cont);
     }
     public void inicializarIndex(int[] mat){
         for (int i=0; i<6000; i++)
@@ -45,14 +58,28 @@ public class InterfazElecciones extends javax.swing.JFrame {
     }
     
     public InterfazElecciones() {
-        initComponents();
-        inicializar();
-        manejador = new ArchivoObjetos();
+        try {
+            initComponents();
+            ve=(Vectores)manejador.leer();
+            if(ve.getCont()==0){
+                inicializar();
+            }
+            else{
+             
+            vecEstudiantes=ve.getVecEstudiantes();
+            indexCedula=ve.getIndexCedula();
+            indexNombre=ve.getIndexNombre();
+            indexApellido=ve.getIndexApellido();
+          
+                }
+        } catch (Exception ex) {
+            Logger.getLogger(InterfazElecciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void insertarEstudiante(Estudiantes est){
         
-        int posicionEst = 0;
+        //int posicionEst = 0;
         
         while(vecEstudiantes[posicionEst].getCedula()!= "-1"){
             posicionEst++;
@@ -130,6 +157,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -310,7 +338,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
                     .addComponent(BuscarApellido))
                 .addGap(35, 35, 35)
                 .addComponent(BotonBuscar)
-                .addGap(29, 29, 29))
+                .addGap(17, 17, 17))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,6 +388,13 @@ public class InterfazElecciones extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Salir Sin Guardar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -371,7 +406,9 @@ public class InterfazElecciones extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(157, 157, 157)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -379,7 +416,9 @@ public class InterfazElecciones extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(jButton1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(0, 51, Short.MAX_VALUE))
         );
 
@@ -485,11 +524,13 @@ public class InterfazElecciones extends javax.swing.JFrame {
     }//GEN-LAST:event_sNombreTextoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-       
+       ve.setIndexApellido(indexApellido);
+       ve.setIndexCedula(indexCedula);
+       ve.setIndexNombre(indexNombre);
+       ve.setVecEstudiantes(vecEstudiantes);
+       ve.setCont(cont);
         try {
-            manejador.Escribir(vecEstudiantes);
-            manejador.Escribir2(indexCedula);
+            manejador.Escribir(ve);
             System.exit(1);
         } catch (Exception ex) {
             Logger.getLogger(InterfazElecciones.class.getName()).log(Level.SEVERE, null, ex);
@@ -498,6 +539,19 @@ public class InterfazElecciones extends javax.swing.JFrame {
        
        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    if(ve!=null){
+    ve.setCont(0);
+        try {
+            manejador.Escribir(ve);
+        } catch (Exception ex) {
+            Logger.getLogger(InterfazElecciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    System.exit(1);
+    }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     
     
@@ -542,6 +596,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
     private javax.swing.JComboBox ComboBoxBuscar;
     private javax.swing.JButton Enviar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

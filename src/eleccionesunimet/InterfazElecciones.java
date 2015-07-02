@@ -22,6 +22,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
     String Datos[][]={};
     String Cabecera[]={"P Nombre"," S Nombre ", "Cedula "," P Apellido","S Apellido","Carrera1","Carrera2"};
     DefaultTableModel modelo= new DefaultTableModel(Datos, Cabecera);
+    public Estudiantes eliminado = new Estudiantes();
    
     
     public void inicializar(){
@@ -98,10 +99,12 @@ public class InterfazElecciones extends javax.swing.JFrame {
         }
         
         vecEstudiantes[posicionEst] = est;
-        
+        System.out.println("==="+posicionEst);
         indexCedula[hashCedula(est.getCedula())]= posicionEst;
         indexNombre[hashNombre(est.getpNombre())]= posicionEst;
         indexApellido[hashApellido(est.getpApellido())]= posicionEst;
+        
+       
     }
     
     //========================================================
@@ -600,7 +603,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
         if(BuscarNombre.isEnabled() && !BuscarApellido.isEnabled()){
 
             System.out.println("\n-->Buscando Nombre");
-            String nom = BuscarNombre.getText();
+            String nom = BuscarNombre.getText().toUpperCase();
             System.out.println(nom);
             int posIndex= sfold(nom);
             aux=vecEstudiantes[indexNombre[posIndex]];
@@ -610,17 +613,18 @@ public class InterfazElecciones extends javax.swing.JFrame {
         }else if(!BuscarNombre.isEnabled() && BuscarApellido.isEnabled()){
 
             System.out.println("\n-->Buscando Apellido");
-            String ape = BuscarApellido.getText();
+            String ape = BuscarApellido.getText().toUpperCase();
             System.out.println(ape);
             int posIndex= sfold(ape);
             aux=vecEstudiantes[indexApellido[posIndex]];
+            System.out.println("");
             aux.imprimir();
             System.out.println("------");
 
         }else if(BuscarNombre.isEnabled() && BuscarApellido.isEnabled()){
 
             System.out.println("\n-->Buscando Nombre y Apellido");
-            String nom = BuscarNombre.getText();
+            String nom = BuscarNombre.getText().toUpperCase();
             System.out.println(nom);
             int posIndex= sfold(nom);
             while(!vecEstudiantes[indexNombre[posIndex]].getpApellido().equals(BuscarApellido.getText()))
@@ -648,7 +652,7 @@ public class InterfazElecciones extends javax.swing.JFrame {
         String car2= aux.getCarrera2();
         Object dato[]={pnom,snom,ci,pAp,sAp,car1,car2};
         modelo.addRow(dato);
-        
+        eliminado=aux;
         
         
     }//GEN-LAST:event_BotonBuscarActionPerformed
@@ -736,8 +740,24 @@ public class InterfazElecciones extends javax.swing.JFrame {
 
     private void BotonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonEliminarMouseClicked
         
-        String ejem = modelo.getValueAt(0, 0).toString();
-        System.out.println("!!!!!="+ejem);
+        String nom = modelo.getValueAt(0, 0).toString();
+        String ape = modelo.getValueAt(0, 3).toString();
+        String ci = modelo.getValueAt(0, 2).toString();
+        int hash;
+        hash= sfold(nom);
+        System.out.println("index N viejo--> "+indexNombre[hash]);
+        indexNombre[hash]=-1;
+        System.out.println("index NOMBRE--> "+indexNombre[hash]+" hash:"+hash);
+        hash= sfold(ape);
+        System.out.println("indes A viejo--> "+indexApellido[hash]);
+        indexApellido[hash]=-1;
+        System.out.println("index APELLIDO--> "+indexApellido[hash]+" hash:"+hash);
+        hash=Integer.parseInt(ci);
+        hash= hash%6000;
+        System.out.println("index C viejo--> "+indexCedula[hash]);
+        indexCedula[hash]=-1;
+        System.out.println("index CEDULA-->"+indexCedula[hash]+" hash:"+hash);
+        
         modelo.removeRow(0);
     }//GEN-LAST:event_BotonEliminarMouseClicked
     
